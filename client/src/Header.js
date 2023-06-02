@@ -5,7 +5,7 @@ import { UserContext } from "./UserContext";
 export default function Header() {
   const {setUserInfo,userInfo} = useContext(UserContext)
   useEffect(()=>{
-    fetch("http://localhost:4000/profile",{
+    fetch("https://blogger-2bi2.onrender.com/profile",{
       credentials:"include"
     }).then((response)=>{
       response.json().then(userInfo =>{
@@ -16,7 +16,7 @@ export default function Header() {
 
 
   function logout(){
-    fetch("http://localhost:4000/logout",{
+    fetch("https://blogger-2bi2.onrender.com/logout",{
       credentials:"include",
       method:"POST",
     });
@@ -31,7 +31,7 @@ export default function Header() {
   return (
     <header>
       <Link to="/" className="logo">
-        Blogger
+        Anurag
       </Link>
       <nav>
         {username && (
