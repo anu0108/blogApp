@@ -21,6 +21,10 @@ app.use("/uploads",express.static(__dirname + "/uploads"))
 mongoose.connect(
   `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.lunza1v.mongodb.net/`
 );
+
+app.get("/", (req,res)=>{
+  res.send("hi");
+})
  
 //route for the register page
 app.post("/register", async (req, res) => {
