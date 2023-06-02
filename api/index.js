@@ -15,6 +15,11 @@ const port = process.env.PORT || 4000;
 const app = express();
 
 app.use(cors({ credentials: true, origin: "*"  }));
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
 app.use(express.json());
 app.use(cookieParser());
 app.use("/uploads",express.static(__dirname + "/uploads"))
