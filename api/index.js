@@ -141,7 +141,7 @@ app.get("/post/:id" , async(req,res)=>{
 }) 
 
 
-app.listen(4000, () => {
+app.listen(port, () => {
   console.log("Server is running on Port 4000");
 });
 
