@@ -31,7 +31,7 @@ export default function Header() {
   return (
     <header>
       <Link to="/" className="logo">
-        Blogger
+        BloggerTest
       </Link>
       <nav>
         {username && (
