@@ -55,6 +55,7 @@ app.post("/login", async (req, res) => {
   if (isPasswordValid) {
     //logged in
     const token = jwt.sign({ username, id: userDoc._id }, "secret");
+    console.log(token)
     res.cookie("token", token).json({
       id: userDoc._id,
       username,
