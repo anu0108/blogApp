@@ -14,7 +14,7 @@ const port = process.env.PORT || 4000;
 
 const app = express();
 
-app.use(cors({ credentials: true, origin: "*"  }));
+app.use(cors({ credentials: true, origin: 'https://magical-starlight-16ed2f.netlify.app' }));
 
   // app.use((req, res, next) => {
   //     res.header('Access-Control-Allow-Origin', '*');
