@@ -44,26 +44,54 @@ app.post("/register", async (req, res) => {
 });
 
 //route for the login page
+// app.post("/login", async (req, res) => {
+//   const { username, password } = req.body;
+//   const userDoc = await User.findOne({ username });
+//   if(!userDoc){
+//     return res.status(400).json({message:"User doesn't exists"})
+//   }
+//   const isPasswordValid = await bcrypt.compare(password, userDoc.password);
+
+//   if (isPasswordValid) {
+//     //logged in
+//     const token = jwt.sign({ username, id: userDoc._id }, "secret");
+//     console.log(token)
+//     res.cookie("token", token).json({
+//       id: userDoc._id,
+//       username,
+//     });
+//   } else {
+//     res.status(400).json("wrong credentials");
+//   }
+// });
+
 app.post("/login", async (req, res) => {
   const { username, password } = req.body;
   const userDoc = await User.findOne({ username });
-  if(!userDoc){
-    return res.status(400).json({message:"User doesn't exists"})
+  if (!userDoc) {
+    return res.status(400).json({ message: "User doesn't exist" });
   }
   const isPasswordValid = await bcrypt.compare(password, userDoc.password);
 
   if (isPasswordValid) {
-    //logged in
+    // Logged in
     const token = jwt.sign({ username, id: userDoc._id }, "secret");
-    console.log(token)
-    res.cookie("token", token).json({
+    console.log(token);
+    res.cookie("token", token, {
+      domain: ".onrender.com",
+      httpOnly: true,
+      secure: true,
+      sameSite: "None",
+    }).json({
+      token, // Include the token in the response
       id: userDoc._id,
       username,
     });
   } else {
-    res.status(400).json("wrong credentials");
+    res.status(400).json("Wrong credentials");
   }
 });
+
 
 app.get("/profile", (req, res) => {
   const { token } = req.cookies;
